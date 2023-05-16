@@ -24,7 +24,7 @@ jobs:
           exit_code=$?
 
       - name: Revert commit if pytest fails
-        if: ${{ job.steps[2].outcome == 'failure' }}
+        if: ${{ job.status == 'failure' }}
         run: |
-          git revert --no-edit HEAD~1
-          git push
+          git reset HEAD~
+          git push -f origin main
