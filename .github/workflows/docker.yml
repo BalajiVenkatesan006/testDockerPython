@@ -19,8 +19,8 @@ jobs:
 
       - name: Build and Test Docker Image
         run: |
-          docker build -t your-docker-repo/image-name .
-          docker run your-docker-repo/image-name pytest
+          docker build -t docker-app.
+          docker run docker-app pytest
 
       - name: Check pytest exit code
         id: pytest-check
