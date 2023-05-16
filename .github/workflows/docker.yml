@@ -21,3 +21,12 @@ jobs:
         run: |
           docker build -t docker-app .
           docker run docker-app pytest
+          exit_code=$?
+
+      - name: Commit changes
+        if: ${{ job.steps[2].outcome == 'success' && steps.build-and-test.outputs.exit_code == 0 }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -a -m "Test passed, commit changes"
+          git push
