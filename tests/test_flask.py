@@ -7,7 +7,7 @@ from app import hello
 class TestFlaskApp(unittest.TestCase):
     def test_flask_app_function(self):
         result = hello()
-        self.assertTrue(result == "Hello world!", "correct Computation")
+        self.assertTrue(result == "Hello world", "correct Computation")
 
 if __name__ == "__main__":
     unittest.main()
