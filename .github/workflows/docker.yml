@@ -19,17 +19,5 @@ jobs:
 
       - name: Build and Test Docker Image
         run: |
-          docker build -t docker-app.
+          docker build -t docker-app .
           docker run docker-app pytest
-
-      - name: Check pytest exit code
-        id: pytest-check
-        run: exit $?
-
-      - name: Commit changes
-        if: ${{ steps.pytest-check.outcome == 'success' }}
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git commit -a -m "Test results: ${{ steps.pytest-check.outcome }}"
-          git push
