@@ -24,10 +24,9 @@ jobs:
           exit_code=$?
 
       - name: Revert commit if pytest fails
-        if: ${{ failure() }}
+        if: ${{ job.status != 'success' }}
         run: |
           git config user.email "balajivenkatesan006@gmail.com"
           git config user.name "BalajiVenkatesan006"
           git revert --no-edit HEAD
-          git commit -m "Revert failed commit"
-          git push
+          git push origin main
